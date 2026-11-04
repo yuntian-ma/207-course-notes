@@ -1,3 +1,4 @@
+
 /**
  * Exercise (Chapter 2: Classes) — overloading, constructors, and static methods.
  *
@@ -19,7 +20,7 @@ public class MyHashing {
 
   /** Creates a MyHashing whose seed starts at 0. */
   public MyHashing() {
-    // TODO: this constructor takes no arguments; leave the seed at its default.
+    // The seed defaults to 0.
   }
 
   /**
@@ -28,43 +29,44 @@ public class MyHashing {
    * @param seed the initial seed value
    */
   public MyHashing(int seed) {
-    // TODO: store the parameter in this object's seed field.
+    this.seed = seed;
   }
 
   /**
-   * Stores {@code value} as the new seed and returns the <em>previous</em> seed.
+   * Stores value as the new seed and returns the previous seed.
    *
    * @param value the new seed
    * @return the seed value from before this call
    */
   public int hash(int value) {
-    // TODO
-    return 0;
+    int previousSeed = seed;
+    seed = value;
+    return previousSeed;
   }
 
   /**
-   * Stores {@code value} as the new seed and returns the sum of the previous
-   * seed and {@code value}, taken modulo {@link #MODULO}. (A char used in
-   * arithmetic is automatically treated as its numeric code, e.g. 'A' is 65.)
+   * Stores value as the new seed and returns the sum modulo MODULO.
    *
    * @param value the new seed, as a character
    * @return (previous seed + value) % MODULO
    */
   public int hash(char value) {
-    // TODO
-    return 0;
+    int result = (seed + value) % MODULO;
+    seed = value;
+    return result;
   }
 
   /**
-   * Returns the sum of the numeric codes of the characters in {@code value}.
-   * This is a static (class) method: it belongs to the class, not to any one
-   * object, so it has no seed to read or change.
+   * Returns the sum of the numeric codes of the characters in value.
    *
    * @param value the string to hash
    * @return the sum of the characters' numeric codes
    */
   public static int hash(String value) {
-    // TODO: String.toCharArray() may help.
-    return 0;
+    int sum = 0;
+    for (char c : value.toCharArray()) {
+      sum += c;
+    }
+    return sum;
   }
 }
