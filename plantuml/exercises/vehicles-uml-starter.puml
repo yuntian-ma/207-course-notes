@@ -22,8 +22,24 @@ interface Chargeable {
   + charge() : void
 }
 
-' TODO: add "abstract class Vehicle", "class Car", and "class ElectricCar"
-'       (with their fields and methods), then add the arrows between all four
-'       types.
+
+abstract class Vehicle {
+  # make : String
+  + maxSpeed() : int
+}
+
+class Car {
+  + maxSpeed() : int
+}
+
+class ElectricCar {
+  - batteryLevel : int
+  + maxSpeed() : int
+  + charge() : void
+}
+
+Vehicle <|-- Car
+Car <|-- ElectricCar
+Chargeable <|.. ElectricCar
 
 @enduml
